@@ -22,9 +22,9 @@ export default class SignUp extends React.Component {
     const mailRe = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const newState = { ...this.state };
     newState[event.target.getAttribute('name')] = event.target.value;
-    newState.validName = newState.name.length > 0 ? newState.name.length < 100 : null;
+    newState.validName = newState.name.length > 0 ? newState.name.length < 120 : null;
     newState.validEmail = newState.email.length > 0 ? mailRe.test(String(newState.email).toLowerCase()) : null;
-    newState.validMessage = newState.message.length > 0 ? newState.message.length < 1000 : null;
+    newState.validMessage = newState.message.length > 0 ? newState.message.length < 1500 : null;
     this.setState(newState);
   };
 
@@ -47,28 +47,45 @@ export default class SignUp extends React.Component {
     })
     .catch((error) => {
       // handle error
-      console.error('arrrgh...', error);
       toaster.danger('Das hat leider nicht geklappt. Versuch\'s doch bitte nochmal, oder kontaktiere uns via E-Mail: info@grit.rocks');
     });
   };
 
   render() {
     return (
-      <Pane
-        justifyContent="center"
-        marginTop={32}
-      >
+      <Pane>
         <Pane
-          width={400}
+          backgroundColor={"#0077B1"}
+          width={"100%"}
+          paddingTop={48}
+          margin={"auto"}
+          paddingBottom={24}
           marginBottom={24}
+          textAlign={"center"}
         >
-          <Heading size={800}>{Config.title}</Heading>
-          {Config.description.map(paragraph => (
-            <Paragraph marginTop="default">
-              {paragraph}
+          <Pane
+            maxWidth={600}
+            margin="auto"
+          >
+            <Heading 
+              fontFamily="'SF Mono', Monaco, Inconsolata, 'Fira Mono', 'Droid Sans Mono', 'Source Code Pro', monospace"
+              size={900}
+              color={"#fcfcfc"}
+            >
+              {Config.title}
+            </Heading>
+            <Paragraph 
+              marginTop="default"
+              color={"#fcfcfc"}
+            >
+              Be a Pioneer! Melde dich mit deinem Projekt an und sei Teil der ersten GRITcon.
             </Paragraph>
-          ))}
+          </Pane>
         </Pane>
+        <Pane
+          margin="auto"
+          width={400}
+        >
         <form onSubmit={this.handleSubmit}>
           <div className="formSection">
             <TextInputField
@@ -78,7 +95,7 @@ export default class SignUp extends React.Component {
               value={this.state.name}
               onChange={this.handleChange}
               isInvalid={this.state.validName != null && !this.state.validName}
-              width={400}
+              width={"100%"}
             />
           </div>
           <div className="formSection">
@@ -89,7 +106,7 @@ export default class SignUp extends React.Component {
               value={this.state.email}
               onChange={this.handleChange}
               isInvalid={this.state.validEmail != null && !this.state.validEmail}
-              width={400}
+              width={"100%"}
             />
           </div>
           <div className="formSection">
@@ -107,14 +124,15 @@ export default class SignUp extends React.Component {
               value={this.state.message}
               onChange={this.handleChange}
               isInvalid={this.state.validMessage != null && !this.state.validMessage}
-              width={400}
+              width={"100%"}
+              rows={5}
             />
           </div>
           <div className="formSection">
           <Pane
             display="flex"
             justifyContent="center"
-            marginTop={32}
+            marginTop={24}
           >
             <Button 
               appearance="primary"
@@ -128,9 +146,13 @@ export default class SignUp extends React.Component {
           </Pane>
           </div>
         </form>
+        </Pane>
         <Pane
           width={400}
-          marginTop={24}
+          margin="auto"
+          paddingTop={24}
+          display="flex"
+          alignItems="center"
         >
           <Pane
             width={100}
@@ -138,8 +160,10 @@ export default class SignUp extends React.Component {
           >
             <div id='logo'></div>
           </Pane>
-          <Pane>
-            <Text>Dies ist ein öffentlicher Event von GRIT.</Text>
+          <Pane
+          >
+            <Paragraph>Dies ist ein öffentlicher Event von GRIT.</Paragraph>
+            <Text>Weitere Informationen unter </Text>
             <Link href="http://www.grit.rocks">www.grit.rocks</Link>
           </Pane>
         </Pane>

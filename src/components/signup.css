@@ -1,9 +1,9 @@
 body {
-  background-image: url("images/background.jpeg");
+  margin: 0px;
 }
 
 #logo {
   width: 100px;
   height: 100px;
-  background-color: darkslategray;
+  background-image: url("images/grit_blue_signet.svg");
 }
