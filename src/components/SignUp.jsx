@@ -80,6 +80,12 @@ export default class SignUp extends React.Component {
             >
               Be a Pioneer! Melde dich mit deinem Projekt an und sei Teil der ersten GRITcon.
             </Paragraph>
+            <Paragraph 
+              marginTop="default"
+              color={"#fcfcfc"}
+            >
+              Wir mögen es einfach, es gibt keine Formalitäten. Bring dein Notebook, Plakat oder Skizze mit, wir stellen dir einen Tisch zur Verfügung. Lass uns wissen falls du weiteres Material wie Beamer oder Flipchart benötigst.
+            </Paragraph>
           </Pane>
         </Pane>
         <Pane
